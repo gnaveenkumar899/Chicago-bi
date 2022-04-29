@@ -3,9 +3,9 @@ steps:
   - name: "gcr.io/cloud-builders/docker"
     args: ["pull", "dpage/pgadmin4"]
   - name: "gcr.io/cloud-builders/docker"
-    args: ["tag", "dpage/pgadmin4", "gcr.io/ninth-terminal-348614/pgadmin"]
+    args: ["tag", "dpage/pgadmin4", "gcr.io/bubbly-granite-347918/pgadmin"]
   - name: "gcr.io/cloud-builders/docker"
-    args: ["push", "gcr.io/ninth-terminal-348614/pgadmin"]
+    args: ["push", "gcr.io/bubbly-granite-347918/pgadmin"]
 
   - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
     entrypoint: gcloud
@@ -15,11 +15,11 @@ steps:
         "deploy",
         "pg-admin",
         "--image",
-        "gcr.io/ninth-terminal-348614/pgadmin",
+        "gcr.io/bubbly-granite-347918/pgadmin",
         "--region",
         "us-central1",
         "--add-cloudsql-instances",
-        "ninth-terminal-348614:us-central1:mypostgres",
+        "bubbly-granite-347918:us-central1:mypostgres",
         "--platform",
         "managed",
         "--port",
@@ -33,9 +33,9 @@ steps:
 
   # Steps to build a docker image for go-microservice, push it to container registry and deploy it to cloud run.
   - name: "gcr.io/cloud-builders/docker"
-    args: ["build", "-t", "gcr.io/ninth-terminal-348614/go-microservice", "."]
+    args: ["build", "-t", "gcr.io/bubbly-granite-347918/go-microservice", "."]
   - name: "gcr.io/cloud-builders/docker"
-    args: ["push", "gcr.io/ninth-terminal-348614/go-microservice"]
+    args: ["push", "gcr.io/bubbly-granite-347918/go-microservice"]
 
   - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
     entrypoint: gcloud
@@ -45,11 +45,11 @@ steps:
         "deploy",
         "go-microservice",
         "--image",
-        "gcr.io/ninth-terminal-348614/go-microservice",
+        "gcr.io/bubbly-granite-347918/go-microservice",
         "--region",
         "us-central1",
         "--add-cloudsql-instances",
-        "ninth-terminal-348614:us-central1:mypostgres",
+        "bubbly-granite-347918:us-central1:mypostgres",
         "--platform",
         "managed",
         "--port",
@@ -57,5 +57,5 @@ steps:
         "--allow-unauthenticated",
       ]
 images:
-  - gcr.io/ninth-terminal-348614/go-microservice
-  - gcr.io/ninth-terminal-348614/pgadmin
+  - gcr.io/bubbly-granite-347918/go-microservice
+  - gcr.io/bubbly-granite-347918/pgadmin
